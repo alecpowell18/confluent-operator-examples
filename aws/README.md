@@ -1,12 +1,18 @@
-# Confluent Platform 5.5 Operator Demo on Amazon EKS
+# Confluent Operator Demo on Amazon EKS
 
-### *STEPS (k8s v1.16.8) - Tested by Alec 05-28-20*
+### *STEPS (k8s v1.16.8, v1.18.9) - Last tested by Alec 11-10-20*
 
-## Create cluster
+## Create cluster using eksctl:
 ```
 eksctl create cluster --name=alec-eks --tags="Owner=apowell" --version=1.16 --region=us-west-2 --zones=us-west-2a,us-west-2b,us-west-2c --nodegroup-name=alec-workers1 --node-type=m5.xlarge --nodes=6 --nodes-min=4 --nodes-max=6 --ssh-access --ssh-public-key=alec-west-2 --managed --external-dns-access
 ```
-Output looks something like:
+
+(simpler form, less costly, easy for POC:)
+```
+eksctl create cluster --name=alec-eks-west2 --tags="Owner=apowell" --version=1.18 --region=us-west-2 --nodegroup-name=alec-kube-workers --node-type=m5.large --nodes=2 --nodes-min=2 --nodes-max=2 --external-dns-access
+```
+
+Your output will look something like:
 ```
 [ℹ]  eksctl version 0.19.0
 [ℹ]  using region us-west-2
